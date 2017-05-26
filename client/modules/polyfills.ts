@@ -1,4 +1,11 @@
 // -----------------------------
+// Application Polyfills
+// -----------------------------
+import 'core-js'
+import 'zone.js'
+import 'rxjs'
+
+// -----------------------------
 // Webpack Polyfills
 // -----------------------------
 

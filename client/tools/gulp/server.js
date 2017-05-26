@@ -1,15 +1,12 @@
 import gulp from 'gulp'
 import browserSync from 'browser-sync'
 import webpack from 'webpack'
-import plugins from 'gulp-load-plugins'
 
 import { main, client } from '../paths'
 import webpackConfig from '../webpack/webpack.config.babel'
 
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
-
-const $ = plugins()
 
 gulp.task('browser-sync', () => {
   let env = {

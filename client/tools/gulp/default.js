@@ -10,7 +10,7 @@ gulp.task('build', (done) => {
 })
 
 gulp.task('default', (done) => {
-  runSequence(['browser-sync'], done)
+  runSequence(['browser-sync', 'json-server'], done)
 })
 
 gulp.task('notify', ['slack'], () => {
