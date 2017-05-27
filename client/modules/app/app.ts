@@ -1,11 +1,16 @@
-// YOUR CODE WILL GO HERE!
-const render = (element) => {
-  return (domContainerNode) => {
-    domContainerNode.appendChild(element)
-  }
-}
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { HttpModule } from '@angular/http'
 
-const el = document.createElement('h1')
-el.innerHTML = 'HS Starter Front End'
+import { AppComponent } from './app.client.component'
 
-render(el)(document.getElementById('app-root'))
+@NgModule({
+  imports: [
+    BrowserModule,
+    HttpModule
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
+})
+
+export class AppModule {}
