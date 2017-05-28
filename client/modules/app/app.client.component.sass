@@ -1,6 +1,98 @@
 @import '~foundation-sites/scss/foundation'
+@import 'settings'
 
 .app
   &__container
     display: flex
+    align-items: center
     justify-content: center
+    background: $c1
+    min-height: 100vh
+
+  &__wrapper
+    @include grid-row()
+
+    width: 100%
+
+  &__wrapper-inner
+    @include grid-col(11.6)
+    @include grid-col-pos(center)
+
+    @include breakpoint(medium)
+      @include grid-col(5.5)
+      @include grid-col-pos(center)
+
+  &__form-movies
+    margin-bottom: rem-calc(24.5)
+
+  &__buttons-theaters
+    margin-bottom: rem-calc(24.5)
+
+  &__thumb-movies
+    background: $white
+    padding: 1.2rem
+
+  // &__thumb-movies-row
+  //   @include grid-row
+
+  // &__thumb-movies-col
+  //   @include grid-col
+
+.form-movies
+  input[type='text']
+    box-shadow: $default-shadow
+    padding: 1.4rem 0.5rem 
+    color: $c2
+    font-size: 1.6rem
+    font-weight: 500
+
+    &::placeholder
+      color: $c2
+
+.button-theatres  
+  display: flex
+  flex-direction: column
+
+  @include breakpoint(medium)
+    flex-direction: row
+
+  button
+    box-shadow: $default-shadow
+    background: $white
+    padding: 0.8rem
+    width: 100%
+    text-transform: uppercase
+    color: $c4
+    font-size: 0.85rem
+    font-weight: 500
+
+    @include breakpoint(medium)
+      box-shadow: none
+      background: transparent
+      width: initial
+
+    &:focus
+      outline: none
+
+    &.active
+      background: $c3
+      color: $white
+
+      @include breakpoint(medium)
+        border-bottom: 2px solid $c3
+        background: transparent
+        color: $c3
+
+  &__single
+    margin-bottom: rem-calc(4)
+
+    @include breakpoint(medium)
+      margin-bottom: 0
+
+    &:last-child
+      margin-bottom: 0
+
+.thumb-movies
+  &__single
+    img
+      box-shadow: $default-shadow

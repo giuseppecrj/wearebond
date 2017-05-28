@@ -1,5 +1,27 @@
 .app
   .app__container
     .app__wrapper
-      input(type="text")
-      p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id sint officiis dolorum quam, necessitatibus dolorem corporis modi aliquam iusto dolores numquam accusantium magni. Explicabo dolorum natus, porro libero ex, non.
+      .app__wrapper-inner
+        .app__form-movies
+          .form-movies
+            input(type="text" placeholder='Search movies...', [(ngModel)]='this.queryString', #myInput, (input)='filterMovies(myInput.value)')
+        
+        .app__buttons-theaters
+          .button-theatres
+            .button-theatres__single(*ngFor='let item of props.theatres')
+              button([class.active]="state.buttonActive === item.id", (click)='chooseTheater(item)') {{ item.name }}
+        
+        .app__thumb-movies
+          .app__thumb-movies-row
+            .app__thumb-movies-col
+              .thumb-movies
+                .thumb-movies__single(*ngFor='let movie of movies')
+                  img(src="{{ movie.poster }}", alt="{{ movie.title }}")
+                  h2 {{ movie.title }}
+                    span ({{ movie.rating }})
+                  span(*ngFor='let time of movie.showtimes') {{ time }}
+
+
+        //- form-movies
+        //- div(*ngFor='let item of props.theatres')
+        //-   pre {{ item.name | json }}

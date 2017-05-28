@@ -1,3 +1,17 @@
 @import '~foundation-sites/scss/foundation'
 
 @include foundation-everything
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak
+  display: none !important
+
+html
+  position: relative
+
+svg
+  size: 100%

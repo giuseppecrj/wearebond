@@ -28,12 +28,12 @@
       true, 
       { "ignoreTypes": ["/^%/"]}
     ],
-    "max-nesting-depth": 2,
+    "max-nesting-depth": 3,
     "sh-waqar/declaration-use-variable": [["/color/", "z-index"]],
     "plugin/selector-bem-pattern": {
       "preset": "bem"
     },
-    "order/declaration-block-properties-specified-order": [
+    "order/properties-order": [
       'composes',
       'display',
       'position',
