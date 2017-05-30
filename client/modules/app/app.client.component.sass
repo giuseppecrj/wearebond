@@ -12,7 +12,13 @@
   &__wrapper
     @include grid-row()
 
+    padding-top: 4rem
+    padding-bottom: 4rem
     width: 100%
+
+    @include breakpoint(medium)
+      padding-top: 8rem
+      padding-bottom: 8rem
 
   &__wrapper-inner
     @include grid-col(11.6)
@@ -28,28 +34,54 @@
   &__buttons-theaters
     margin-bottom: rem-calc(24.5)
 
+    .button-filters
+      display: none
+
+    @include breakpoint(medium)
+      display: flex
+      align-items: center
+      justify-content: space-between
+      margin-bottom: 0.3rem
+
+      .button-filters
+        display: block
+
   &__thumb-movies
     background: $white
     padding: 1.2rem
 
-  // &__thumb-movies-row
-  //   @include grid-row
+    @include breakpoint(medium)
+      border: 1px solid $c2
+      box-shadow: $default-shadow
 
-  // &__thumb-movies-col
-  //   @include grid-col
+  &__filters
+    display: none
+    visibility: hidden
+    opacity: 0
 
+    &.show
+      display: block
+      visibility: visible
+      opacity: 1
+
+// form-movies
 .form-movies
   input[type='text']
+    border: 2px solid transparent
     box-shadow: $default-shadow
     padding: 1.4rem 0.5rem 
     color: $c2
-    font-size: 1.6rem
+    font-size: 1.5rem
     font-weight: 500
+
+    &:focus
+      border: 2px solid $c3
 
     &::placeholder
       color: $c2
 
-.button-theatres  
+// button-theatres
+.button-theatres
   display: flex
   flex-direction: column
 
@@ -59,6 +91,7 @@
   button
     box-shadow: $default-shadow
     background: $white
+    cursor: pointer
     padding: 0.8rem
     width: 100%
     text-transform: uppercase
@@ -79,7 +112,7 @@
       color: $white
 
       @include breakpoint(medium)
-        border-bottom: 2px solid $c3
+        border-bottom: 3px solid $c3
         background: transparent
         color: $c3
 
@@ -92,7 +125,102 @@
     &:last-child
       margin-bottom: 0
 
+.button-filters
+  display: flex
+  align-items: center
+
+  &__name
+    display: inline-block
+    margin-right: 1rem
+    cursor: pointer
+    size: 1rem
+
+    &.active
+      svg
+        fill: $c3
+
+    svg
+      fill: $c2
+
+  &__rating
+    display: inline-block
+    position: relative
+    top: 0.2rem
+    cursor: pointer
+    size: 1.4rem
+
+    &.active
+      svg
+        fill: $c3
+
+    svg
+      fill: $c2
+
+// thumb-movies
 .thumb-movies
   &__single
+    @include breakpoint(medium)
+      display: flex
+      justify-content: space-between
+      margin-bottom: 1.3rem
+
+      &:last-child
+        margin-bottom: 0
+
+  &__single-image
     img
+      margin-bottom: 1rem
       box-shadow: $default-shadow
+
+      @include breakpoint(medium)
+        margin-bottom: 0
+        max-width: 5.1rem
+
+  &__single-copy
+    @include breakpoint(medium)
+      margin-left: 1.8rem
+      width: 100%
+
+    h2
+      margin-bottom: 0.1rem
+      color: $c5
+      font-size: 1.6rem
+      font-weight: 500
+
+      @include breakpoint(medium)
+        font-size: 1.5rem
+
+    span
+      line-height: 1
+      color: $c2
+      font-size: 1rem
+      font-weight: normal
+
+      @include breakpoint(medium)
+        color: $c4
+        // font-size: 0.9rem
+        // font-weight: 500
+
+  &__single-times
+    margin-bottom: 1.3rem
+    max-width: 17rem
+    line-height: 1
+
+    p
+      display: inline-block
+      margin: 0
+      padding: 0 0.5rem 0 0
+      text-transform: uppercase
+      font-size: 0.86rem
+
+      &:last-child
+        padding: 0
+
+      &.passed
+        opacity: 0.3
+
+  &--nothing
+    p
+      margin: 0
+      color: $c4
+

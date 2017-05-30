@@ -4,24 +4,38 @@
       .app__wrapper-inner
         .app__form-movies
           .form-movies
-            input(type="text" placeholder='Search movies...', [(ngModel)]='this.queryString', #myInput, (input)='filterMovies(myInput.value)')
+            input(type="text" placeholder='Search movies...', [(ngModel)]='queryString', #query, (input)='filterMoviesByTitle(query.value)')
         
         .app__buttons-theaters
           .button-theatres
             .button-theatres__single(*ngFor='let item of props.theatres')
               button([class.active]="state.buttonActive === item.id", (click)='chooseTheater(item)') {{ item.name }}
-        
+
+          .button-filters
+            .button-filters__name((click)='sortByTitle("title")', [class.active]='state.ascending === false')
+              svg: use(xlink:href='#sorting')
+            .button-filters__rating((click)='openFilter()', [class.active]='state.showFilters')
+              svg: use(xlink:href='#filter')
+
+        .app__filters([class.show]='state.showFilters')
+          .checkbox-filters
+            select([(ngModel)]='ratingQuery', (ngModelChange)='filterMoviesByRating($event)')
+              option([value]='"back"', disabled) Select a rating...
+              option([value]='rating', *ngFor='let rating of ratings') {{ rating }}
+              option([value]='""') All
+
         .app__thumb-movies
           .app__thumb-movies-row
             .app__thumb-movies-col
               .thumb-movies
                 .thumb-movies__single(*ngFor='let movie of movies')
-                  img(src="{{ movie.poster }}", alt="{{ movie.title }}")
-                  h2 {{ movie.title }}
-                    span ({{ movie.rating }})
-                  span(*ngFor='let time of movie.showtimes') {{ time }}
+                  .thumb-movies__single-image
+                    img(src="{{ movie.poster }}", alt="{{ movie.title }}")
+                  .thumb-movies__single-copy
+                    h2 {{ movie.title }} 
+                      span ({{ movie.rating }})
+                    .thumb-movies__single-times
+                      p(*ngFor='let time of movie.showtimes', [class.passed]='compareTimes(time)') {{ time }}
 
-
-        //- form-movies
-        //- div(*ngFor='let item of props.theatres')
-        //-   pre {{ item.name | json }}
+              .thumb-movies--nothing(*ngIf='movies?.length === 0')
+                p No movies match that criteria!

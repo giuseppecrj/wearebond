@@ -14,6 +14,10 @@ export class AppService {
     this.cache = {}
   }
 
+  getRatingsOfSingleTheatre (movies) {
+    return movies.map((item) => item.rating).sort().filter((item, pos, ary) => !pos || item !== ary[pos - 1])
+  }
+
   getMoviesOfSingleTheatre (showtimes, movies) {
     // use cache if no movies are passed
     let storedMovies = movies || this.cache.movies
@@ -21,9 +25,13 @@ export class AppService {
     const findMovie = (movies, showTimeId) =>
       movies.find(movie => movie.id === showTimeId)
 
+    const sortTimes = (a, b) => {
+      return new Date(`1970/01/01 ${a}`) - new Date(`1970/01/01 ${b}`)
+    }
+
     const foundMovies = Object.keys(showtimes)
       .map((showTimeId, index) =>
-        Object.assign({}, findMovie(storedMovies, showTimeId), { showtimes: showtimes[showTimeId] }))
+        Object.assign({}, findMovie(storedMovies, showTimeId), { showtimes: showtimes[showTimeId].sort(sortTimes) }))
 
     return foundMovies
 
@@ -74,6 +82,9 @@ export class AppService {
 
             // getting only for the first theater in order to avoid handling entire data set at once
             this.props.movies = this.getMoviesOfSingleTheatre(theatres[INITIAL_THEATRE].showtimes, movies)
+
+            // getting the initial ratings
+            this.props.ratings = this.getRatingsOfSingleTheatre(this.props.movies)
           }
         }
       })
