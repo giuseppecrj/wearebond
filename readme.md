@@ -109,11 +109,7 @@ In order to start using the boilerplate:
 
 ```bash
 ### move into the assigned directory
-### whether your application will be client side
 cd client
-
-### whether your application will be server side
-cd server
 
 ### make sure you are using the correct node version by running
 node -v // 6.9.x
@@ -129,9 +125,6 @@ npm run gulp build
 
 ### watches your files by default
 npm run gulp
-
-### runs production build
-npm run deploy
 ```
 
 Installing Dependencies
@@ -154,13 +147,16 @@ import ReactDOM from 'react-dom'
 Make sure all dependencies are added to the dependencies field in `client/package.json`
 
 ```
-"dependencies": {}
+"dependencies": {
+	"react": "x.x.x",
+	"react-dom": "x.x.x"
+}
 ```
 
 Project Structure
 -----------------
 
-The project is separated into multiple directories, client and server. If you are only making client side changes then you will be working on the client side directory same if you are making server side changes.
+The project is separated into multiple directories, client and server. If you are only making client side applications then you will be working on the client side directory same if you are making server side applications.
 
 #### Client Directory
 
